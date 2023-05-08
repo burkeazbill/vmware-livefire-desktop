@@ -27,6 +27,7 @@ This repo provides a base modern apps developer Ubuntu desktop that includes a n
 7. Place a file named "Logo.png" in the Pictures folder if you wish to have a custom logo displayed in the conky desktop widget. If nothing is added there, the build will get the conky logo and place it in the widget.
 7. Download the Ubuntu 22.04.2 LTS ISO image https://releases.ubuntu.com/22.04/ubuntu-22.04.2-live-server-amd64.iso and place it on your vCenter Datastore
 8. Run the build.sh script - Fix/Update config files if/when error discovered
+   - Note: The build process can take a very long time: 30-90 minutes, depending on internet speed, number of updates to process, and number of scripts to run
 9. When Script has completed, you should have a snapshot of the newly built VM available (depending on the options you updated in your .hcl files)
 10. Perform an initial login as your build user to the desktop
 11. Click in the screen to get rid of the overview, then wait for the desktop to change and the Desktop Status to display "READY"
@@ -70,8 +71,6 @@ This repo provides a base modern apps developer Ubuntu desktop that includes a n
 - Installs VLC, OBS, Gimp
 - Installs Kontena Lens
 - Installs/Keeps updated browsers upon login: Microsoft Edge, Google Chrome, and Brave
-
-### Other Builds
 
 ## TODO 
 
