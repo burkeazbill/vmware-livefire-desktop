@@ -7,6 +7,7 @@ This repo provides a base modern apps developer Ubuntu desktop that includes a n
 ## Build requirements
 
 - Packer 1.8.x
+- bash shell (I have only tested this on MacOS and Linux)
 
 ### vCenter Builds
 
