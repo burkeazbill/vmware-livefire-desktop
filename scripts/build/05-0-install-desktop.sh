@@ -46,8 +46,12 @@ Name[en]=onBoard Keyboard
 Name=onBoard Keyboard
 Comment[en]=
 Comment=
-
 EOF
 
+# Set onboard default configuration:
+if [ -f ~/.scripts/runonce/onboard-defaults.conf ]; then
+  sudo mkdir -p /etc/onboard
+  sudo install ~/.scripts/runonce/onboard-defaults.conf /etc/onboard
+fi
 
 echo "05-install-desktop.sh executed" >> "$HOME"/.packer.txt

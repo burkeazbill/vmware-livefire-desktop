@@ -60,10 +60,10 @@ rm -f ./"$script_name".*
 
 rm -f ./griffon_logo_xrdp.bmp
 
-sudo sed -i "4s/^/gnome-extensions enable ubuntu-dock@ubuntu.com \n/" /etc/xrdp/startwm.sh
+# sudo sed -i "4s/^/gnome-extensions enable ubuntu-dock@ubuntu.com \n/" /etc/xrdp/startwm.sh
 sudo sed -i "5s/^/gnome-extensions enable dash-to-panel@jderose9.github.com \n/" /etc/xrdp/startwm.sh
 sudo sed -i "5s/^/gnome-extensions enable ubuntu-appindicators@ubuntu.com \n/" /etc/xrdp/startwm.sh
-sudo sed -i "5s/^/gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.github.com \n/" /etc/xrdp/startwm.sh
+# sudo sed -i "5s/^/gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.github.com \n/" /etc/xrdp/startwm.sh
 
 # It seems that the script above can results in some File manager, settings, font packages, and several other things  get removed...
 sudo apt install -y nautilus-admin nautilus-font-manager p7zip-full fonts-cantarell fonts-noto-color-emoji \
