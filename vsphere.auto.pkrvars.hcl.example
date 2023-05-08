@@ -1,0 +1,37 @@
+/*
+    DESCRIPTION: VMware vSphere variables used for all builds.
+    Variables are use by the source blocks.
+*/
+// vSphere Credentials
+vsphere_endpoint            = "vcenter.example.com"
+vsphere_username            = "administrator@vsphere.local"
+vsphere_password            = "VMware1!"
+vsphere_insecure_connection = true
+
+// vSphere Settings
+vsphere_datacenter    = "datacenter-01"
+vsphere_cluster       = "cluster-01"
+vsphere_iso_datastore = "nfsDatastore"
+// If iso is in root folder, leave iso_path empty
+iso_path              = "isos/Linux"
+vsphere_datastore     = "vsanDatastore"
+vsphere_network       = "dhcp-net"
+vsphere_folder        = "Templates"
+vsphere_resource_pool = "Builds"
+vsphere_host          = ""
+vm_nested_hardware_virtualization = true
+
+// Template and Content Library Settings
+common_template_conversion         = false
+
+// If you wish to automatically add the newly created
+// vm to a content library, specify the library name
+// and options below
+// Set library_name to null to disable
+common_content_library_name        = null
+// common_content_library_name        = "lab-content-library"
+common_content_library_ovf         = false
+
+// Destroy the vm after imported to library?
+common_content_library_destroy     = false
+common_content_library_skip_export = true

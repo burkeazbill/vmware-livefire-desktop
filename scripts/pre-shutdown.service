@@ -1,0 +1,12 @@
+[Unit]
+Description=Pre-Shutdown Service to run custom scripts
+DefaultDependencies=no
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/pre-shutdown-script.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=shutdown.target

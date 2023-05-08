@@ -1,0 +1,10 @@
+[Desktop Entry]
+  Type=Application
+  Exec=/usr/local/bin/login-updates.sh
+  Hidden=false
+  NoDisplay=false
+  X-GNOME-Autostart-enabled=true
+  X-GNOME-Autostart-Delay=10
+  Name=Custom-Login-Updates
+  Name[en_US]=Login Updates
+  Comment=Runs custom login scripts

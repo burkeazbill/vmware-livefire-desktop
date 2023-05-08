@@ -1,0 +1,56 @@
+// DESCRIPTION: Common variables used for all builds. Variables are use by the source blocks.
+
+// Default Guest OS Account Credentials
+build_username           = "vmadmin"
+build_password           = "MyP@ssw0rd-22!"
+// In order to generate encrypted password: echo 'MyP@ssw0rd-22!' | mkpasswd -m sha-512 --stdin
+build_password_encrypted = "$6$XOs72/FHoZix0pqZ$3BodLEquJ7h1SSF95vKmizurAbgPz5xEhJ/ar/OyR875rrEclWeglthFTsmdSIT2.yg1Bc1xNepqADf9q3AL41"
+// In order to generate encrypted password: echo 'VMware1!' | mkpasswd -m sha-512 --stdin
+// build_password_encrypted = "$6$qPDAQFC5.S$rWjhsS3uSjwIFy9B0egevMxInF8D0ZKDA5RoePbwtmjn.7z4j4kvR.drNSLAa4lxsyKLZgtEbpDJ7k6Qe1jUz1"
+build_key                = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8AGWVZy5FvtKoDpR8mxr0Z73oZAE/sLSYgndRH7zeDlumn/cjwKRP9u7c3nXlq1IuRPbMWqtWuwK0G+5NJlWQQCp+G6XHE/jduKIq76mnlCVwQkXDSKIpZrPT4q+UtbcExtYs1C1c+pMLphYYgBHXLKXWzTUtluvvfaTk4oqPirMLFeNugoiM4C7pgn8D4SpvY/wdHO47FwD3jIoS4EEUBqZXeWqaUfDrrc2EjGs7f7AHmniU0EZI9I0lXFJBivSETkHMhTS1afQjW+AfNnqYfarr/yVLeog+Blca3FLBRa11RyeWWEGxa4QAi0xUVo+geSaQ2xDSz82vaC/jkGL1"
+
+// Virtual Machine Settings
+common_vm_version           = 19
+common_tools_upgrade_policy = true
+common_remove_cdrom         = true
+vm_disk_thin_provisioned    = true
+
+// Boot and Provisioning Settings
+common_data_source      = "http"
+common_http_ip          = null
+common_http_port_min    = 8000
+common_http_port_max    = 8099
+common_ip_wait_timeout  = "20m"
+common_shutdown_timeout = "15m"
+
+// Output Configuration
+// Create Snapshot?
+common_create_snapshot             = true
+common_snapshot_name               = "Clean Install"
+// Template and Content Library Settings
+common_template_conversion         = false
+
+// If you wish to automatically add the newly created
+// vm to a content library, specify the library name
+// and options below
+// Set library_name to null to disable
+common_content_library_name        = null
+// common_content_library_name        = "lab-content-library"
+common_content_library_ovf         = false
+// Destroy the vm after imported to library?
+common_content_library_destroy     = false
+common_content_library_skip_export = false
+
+// If you would like an OVF export of the VM
+// upon completion, set common_export_ovf = "yes", if not, set value to "no"
+common_export_ovf = "yes"
+common_output_path = "./output/"
+common_output_force_overwrite = false
+
+// Extra custom configuration:
+// If you want to specify custom /etc/resolv.conf, 
+// you must at least specify a value for common_private_dns_ip
+// These values get used in the oo-init.sh script
+common_private_dns_ip       = ""
+common_internal_domain_name = "home.arpa"
+common_private_ntp_ip       = ""

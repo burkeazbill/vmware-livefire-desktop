@@ -1,0 +1,96 @@
+conky.config = {
+--==============================================================================
+-- Modern Apps Dev Desktop
+-- Date    : 03/22/2022
+-- Author  : BurkeAzbill
+-- Version : v0.6
+--==============================================================================
+
+	background = true,
+	update_interval = 5,
+	alignment = 'top_left',
+
+	border_inner_margin = 5,
+	border_outer_margin = 0,
+
+	border_width = 0,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+
+	double_buffer = true,
+	no_buffers = true,
+	text_buffer_size = 2048,
+	gap_x = 37,
+	gap_y = 220,
+	minimum_width = 300, 
+	minimum_height = 520,
+	maximum_width = 350,
+	out_to_console = false,
+
+	own_window = true,
+	own_window_type = 'desktop',
+	own_window_transparent = false,
+	own_window_argb_visual = true,
+	own_window_argb_value = 80,
+	own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
+
+	override_utf8_locale = true,
+	use_xft = true,
+
+-- Defining colors
+	default_color = 'FFFFFF',
+-- Shades of Gray
+	color1 = 'DDDDDD',
+-- Blue
+	color2 = '19B0FF',
+-- Aqua
+	color3 = '42f2f5',
+-- Orange
+	color4 = 'f78a31',
+-- Purple
+	color5 = 'b664f4',
+-- Mustard
+	color6 = 'FFA300',
+
+-- Header with base system info
+};
+conky.text = [[
+${font weight:bold}${color1}${alignc}${exec cat ~/.conky-title.txt}
+${font weight:bold}${color1}${hr 2}$font
+# ${font weight:bold}${color2}Username: ${alignr}${font weight:normal}${if_match exec cat /var/log/vmware/Environment.txt | grep "Broker_DomainName: " |awk '{ print $1 }=="Broker_DomainName"}${exec cat /var/log/vmware/Environment.txt | grep "Broker_DomainName: " | awk '{ print $2 }'}\${endif}${exec whoami}
+${color2}Username: ${alignr}${font weight:normal}${exec whoami}
+${color2}Hostname: ${alignr}${font weight:normal}$nodename
+${color2}Uptime: ${alignr}${font weight:normal}$uptime
+# The following line uses Ubuntu syntax to get the ip address for interface named ens160
+# Update as needed for your OS and/or interface name
+${color3}Internal IP: ${alignr}${font weight:normal}${addr ens160}
+# Update the following line to curl your own corporate IP Address lookup or comment out/delete to disable
+# ${font}${color4}Corporate IP: ${alignr}${font weight:normal}${exec curl myip.internal.lan}
+# Comment out/delete the following line to disable
+# ${font}${color6}Public IP: ${alignr}${font weight:normal}${exec dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'}
+# Showing disk partitions: root
+# ${font weight:bold}${color5}Free / : ${font weight:normal}${fs_free /}${alignr}${font weight:bold}Used: ${font weight:normal}${fs_used /}
+
+# If more than 90% of disk used, change numbers and bar to RED color:
+${color5}Storage: ${if_match $fs_used_perc>90}${color red}${endif}${font weight:normal}${fs_used /}/${fs_size /} ${fs_bar 10}
+# Memory Utilization:
+${color5}${if_match $memperc>90}${color red}${endif}Memory: ${font weight:normal}$mem/$memmax ${membar 10}
+# Uncomment the following line if this is used on a Linux VM in a VMware Horizon pool and you wish to display the pool name
+# ${if_existing /var/log/vmware/Environment.txt}${color2}Horizon Pool: ${alignr}${exec cat /var/log/vmware/Environment.txt | grep Launch_ID: | cut -d ' ' -f2 }${endif}
+# If the .status.txt file in the current user home directoy contains ANYTHING other
+# than "Ready" <- Case sensitive, the text and file modified date will be RED
+# If the status.txt file ONLY has a single line with the word: Ready
+# then the text and modified file date will be GREEN 
+${alignc}${font weight:bold}${color1}-=Desktop Status=-
+${alignc}${font weight:bold}${if_match "${exec cat ~/.status.txt}"=="Ready"}${color green}${exec cat ~/.status.txt}: ${exec date -r ~/.status.txt +"%b %d %H:%M"}${else}${color red}${exec cat ~/.status.txt | fmt -s -w 40 }${endif}
+
+${font weight:bold}${color1}${alignc}Some Timezones
+${font weight:bold}${color1}${hr 2}$font
+${alignc}${time %A %B %d, %Y}
+${color6}London:     ${alignr}${offset -10}$color${tztime Europe/London %H:%M}
+${color6}US Central: ${alignr}${offset -10}$color${tztime America/Mexico_City %H:%M}
+${color6}Singapore:  ${alignr}${offset -10}$color${tztime Singapore %H:%M}
+${image $HOME/Pictures/Logo.png -p 60,320 -s 200x200}
+]];

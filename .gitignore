@@ -1,0 +1,6 @@
+common.auto.pkrvars.hcl
+vsphere.auto.pkrvars.hcl
+MesloLGSNF/
+output/
+test/
+.DS_Store

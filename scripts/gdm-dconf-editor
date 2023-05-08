@@ -1,0 +1,16 @@
+#!/bin/bash
+# This script must be run as a user with sudo permission, logged into a system using gdm.
+# Additionally, the dconf-editor program must be installed. 
+#
+# Purpose, the script allows you to see the actual dconf settings for the gdm user that runs the login UI
+#
+cp "$XAUTHORITY" /tmp/.Xauthority
+sudo chown gdm:root /tmp/.Xauthority
+sudo chmod 660 /tmp/.Xauthority
+if ! command -v dconf-editor &> /dev/null
+then
+  echo dconf-editor not installed. Installing now...
+  sudo apt install -y dconf-editor
+fi
+# Note: If you run into a DISPLAY unavailable error, try changing the :1 to something :0 or :2
+sudo -u gdm bash -c 'export DISPLAY=":1";export XAUTHORITY="/tmp/.Xauthority";export XAUTHLOCALHOSTNAME="localhost";dbus-launch dconf-editor'
