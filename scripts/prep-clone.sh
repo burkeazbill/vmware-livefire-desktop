@@ -9,6 +9,7 @@ echo "Cleaning up logs and old files..."
 stat -t /var/log/builduser-*.log >/dev/null 2>&1 && truncate -s0  /var/log/builduser-*.log
 stat -t /var/log/cloud* >/dev/null 2>&1 && truncate -s0  /var/log/cloud*
 stat -t /var/log/builduser-imc/toolsDeployPkg.log >/dev/null 2>&1 && truncate -s0 /var/log/builduser-imc/toolsDeployPkg.log
+cp /etc/netplan/00-installer-config.yaml /root
 rm -Rf /var/log/sssd/*
 rm -Rf /etc/netplan/50*
 rm -Rf /etc/netplan/99*
@@ -111,6 +112,7 @@ echo "Machine-id: $(cat /etc/machine-id)"
 
 cloud-init clean
 touch /etc/cloud/cloud-init.disabled
+cp /root/00-installer-config.yaml /etc/netplan/00-installer-config.yaml
 history -c
 echo -n > /root/.zsh_history
 echo -n > /root/.bash_history
