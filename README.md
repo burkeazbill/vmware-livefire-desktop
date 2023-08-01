@@ -25,16 +25,18 @@ This repo provides a base modern apps developer Ubuntu desktop that includes a n
 5. Review/Customize the build.sh script as needed
 6. Place a file named "custom-login-screen.png" in the Pictures folder if you wish to have a custom login screen for the desktop.
 7. Place a file named "Logo.png" in the Pictures folder if you wish to have a custom logo displayed in the conky desktop widget. If nothing is added there, the build will get the conky logo and place it in the widget.
-7. Download the Ubuntu 22.04.2 LTS ISO image https://releases.ubuntu.com/22.04/ubuntu-22.04.2-live-server-amd64.iso and place it on your vCenter Datastore
-8. Run the build.sh script - Fix/Update config files if/when error discovered
-   - Note: The build process can take a very long time: 30-90 minutes, depending on internet speed, number of updates to process, and number of scripts to run
-9. When Script has completed, you should have a snapshot of the newly built VM available (depending on the options you updated in your .hcl files)
-10. Perform an initial login as your build user to the desktop
-11. Click in the screen to get rid of the overview, then wait for the desktop to change and the Desktop Status to display "READY"
-12. Customize the desktop, shortcuts/favorites, etc.. as desired. Install additional agents, join domain, etc... Make note of the IP Address of the desktop
-13. Log Out of the desktop - At this point, you can RDP or SSH to the desktop. RDP should have sound enabled as well ;)
-14. SSH to the desktop as your build user and execute /root/prep-clone.sh (this will cleanup all the temp files and prepare your desktop for new users to login by updating the /etc/skel directory with your customized settings that were configured as the build user)
-15. Shutdown and clone/export/convert to template as desired
+8. Download the Ubuntu 22.04.2 LTS ISO image https://releases.ubuntu.com/22.04/ubuntu-22.04.2-live-server-amd64.iso and place it on your vCenter Datastore
+9. Run the build.sh script - Fix/Update config files if/when error discovered
+   - Notes:
+   - Monitor your new VM build console window! If it gets stuck on the installation screen that is asking to select the language, then you need to adjust the **vm_boot_wait  = "5s"** value in the **linux-ubuntu.auto.pkrvars.hcl** for YOUR hardware. If this value is too short, the boot process will proceed before Packer attempts to pass in the automated boot parameters... if it's too long, the parameters may be sent too early. It can take several attempts to get just the right value for the hardware you are using. 
+   - The build process can take a very long time: 30-90 minutes, depending on internet speed, number of updates to process, and number of scripts to run
+10. When Script has completed, you should have a snapshot of the newly built VM available (depending on the options you updated in your .hcl files)
+11. Perform an initial login as your build user to the desktop
+12. Click in the screen to get rid of the overview, then wait for the desktop to change and the Desktop Status to display "READY"
+13. Customize the desktop, shortcuts/favorites, etc.. as desired. Install additional agents, join domain, etc... Make note of the IP Address of the desktop
+14. Log Out of the desktop - At this point, you can RDP or SSH to the desktop. RDP should have sound enabled as well ;)
+15. SSH to the desktop as your build user and execute /root/prep-clone.sh (this will cleanup all the temp files and prepare your desktop for new users to login by updating the /etc/skel directory with your customized settings that were configured as the build user)
+16. Shutdown and clone/export/convert to template as desired
 
 ## Base build includes
 
